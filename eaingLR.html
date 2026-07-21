@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eating in Central Arkansas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;600;700;800&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F0EAD9;
+    --paper-deep:#E7DFC8;
+    --card:#FBF8EF;
+    --ink:#26231D;
+    --ink-soft:#524B3F;
+    --pine:#2F4B3C;
+    --pine-deep:#1F332A;
+    --brick:#9C3B2E;
+    --gold:#B98F2A;
+    --line:#D9CFB2;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    font-size:16px;
+    line-height:1.5;
+  }
+  h1,h2,h3{font-family:'Bitter',serif;margin:0;}
+  a{color:inherit;text-decoration:none;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:
+      radial-gradient(circle at 15% 20%, rgba(255,255,255,0.10), transparent 45%),
+      linear-gradient(180deg, var(--pine-deep), var(--pine) 70%);
+    color:#F3EEDF;
+    padding:78px 24px 64px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::before, .hero::after{
+    content:"";
+    position:absolute;
+    left:0; right:0;
+    height:14px;
+    background-image: repeating-linear-gradient(90deg, var(--paper) 0 12px, transparent 12px 24px);
+    background-size:24px 14px;
+  }
+  .hero::before{top:0;}
+  .hero::after{bottom:0; transform:rotate(180deg); background:var(--paper);
+    background-image: repeating-linear-gradient(90deg, var(--paper) 0 12px, transparent 12px 24px);}
+  .hero .eyebrow{
+    font-family:'Space Mono',monospace;
+    letter-spacing:.28em;
+    font-size:12px;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:18px;
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 6vw, 4.6rem);
+    font-weight:800;
+    letter-spacing:-.01em;
+    line-height:1.02;
+  }
+  .hero h1 span{display:block; font-size:.42em; font-weight:600; color:#CFC199; margin-top:14px; letter-spacing:.02em;}
+  .hero p.sub{
+    max-width:640px;
+    margin:26px auto 0;
+    color:#DCD3B9;
+    font-size:1.05rem;
+  }
+
+  /* ---------- STICKY NAV ---------- */
+  .navwrap{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:var(--pine-deep);
+    border-bottom:2px solid var(--gold);
+  }
+  .nav{
+    display:flex;
+    flex-wrap:wrap;
+    gap:2px;
+    max-width:1100px;
+    margin:0 auto;
+    padding:10px 16px;
+    justify-content:center;
+  }
+  .nav a{
+    font-family:'Space Mono',monospace;
+    font-size:12px;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+    color:#DCD3B9;
+    padding:8px 12px;
+    border-radius:2px;
+    white-space:nowrap;
+    transition:background .15s, color .15s;
+  }
+  .nav a:hover{background:var(--gold); color:var(--pine-deep);}
+
+  /* ---------- MAIN LAYOUT ---------- */
+  main{max-width:1100px; margin:0 auto; padding:8px 24px 100px;}
+
+  .section{
+    margin-top:64px;
+    scroll-margin-top:64px;
+  }
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    gap:16px;
+    border-bottom:3px solid var(--ink);
+    padding-bottom:12px;
+    margin-bottom:8px;
+  }
+  .section-head .icon{font-size:1.7rem;}
+  .section-head h2{
+    font-size:1.9rem;
+    font-weight:700;
+    color:var(--pine-deep);
+  }
+  .section-head .count{
+    font-family:'Space Mono',monospace;
+    font-size:12px;
+    color:var(--brick);
+    margin-left:auto;
+    letter-spacing:.05em;
+  }
+  .section-note{
+    font-size:.92rem;
+    color:var(--ink-soft);
+    margin:10px 0 24px;
+    font-style:italic;
+  }
+
+  .subhead{
+    font-family:'Space Mono',monospace;
+    font-size:13px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--brick);
+    margin:28px 0 14px;
+    padding-bottom:6px;
+    border-bottom:1px dashed var(--line);
+  }
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(300px, 1fr));
+    gap:18px;
+  }
+
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:3px;
+    padding:18px 20px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    position:relative;
+    box-shadow:0 1px 0 rgba(38,35,29,.04);
+  }
+  .card-top{
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .card-top img{
+    width:26px; height:26px;
+    border-radius:4px;
+    flex-shrink:0;
+    background:#fff;
+    object-fit:contain;
+    border:1px solid var(--line);
+  }
+  .card-top .fallback{
+    width:26px;height:26px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:15px;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:4px;
+    flex-shrink:0;
+  }
+  .card h3{
+    font-size:1.08rem;
+    font-weight:700;
+    color:var(--ink);
+    line-height:1.25;
+  }
+  .card .loc{
+    font-family:'Space Mono',monospace;
+    font-size:11px;
+    color:var(--ink-soft);
+    letter-spacing:.02em;
+  }
+  .card p{
+    font-size:.9rem;
+    color:var(--ink-soft);
+    margin:0;
+    flex-grow:1;
+  }
+  .card .tag{
+    display:inline-block;
+    font-family:'Space Mono',monospace;
+    font-size:10px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    background:var(--gold);
+    color:var(--pine-deep);
+    padding:2px 7px;
+    border-radius:2px;
+    width:fit-content;
+    margin-bottom:2px;
+  }
+  .card .link{
+    margin-top:auto;
+    font-size:.82rem;
+    font-weight:600;
+    color:var(--brick);
+    border-top:1px solid var(--line);
+    padding-top:10px;
+  }
+  .card .link:hover{color:var(--pine-deep);}
+  .card .link::after{content:" →";}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--pine-deep);
+    color:#C9BE9C;
+    text-align:center;
+    padding:40px 24px;
+    font-family:'Space Mono',monospace;
+    font-size:12px;
+    letter-spacing:.05em;
+  }
+  footer strong{color:#F3EEDF;}
+
+  @media (max-width:640px){
+    .hero{padding:56px 18px 46px;}
+    .section-head{flex-wrap:wrap;}
+    .section-head .count{margin-left:0;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="eyebrow">A Field Guide for Visitors &amp; Locals Alike</div>
+  <h1>Eating in Central Arkansas<span>Little Rock · North Little Rock · Sherwood · Jacksonville · Maumelle · Benton</span></h1>
+  <p class="sub">A running list of where to eat, drink, and dig in — sorted alphabetically by category. Every entry links straight to the menu.</p>
+</header>
+
+<div class="navwrap">
+  <nav class="nav">
+    <a href="#asian">Asian</a>
+    <a href="#breakfast">Breakfast</a>
+    <a href="#breweries">Breweries</a>
+    <a href="#burgers">Burgers</a>
+    <a href="#italian">Italian</a>
+    <a href="#mediterranean">Mediterranean</a>
+    <a href="#pizza">Pizza</a>
+    <a href="#southamerican">South American</a>
+    <a href="#southern">Southern / American</a>
+    <a href="#upscale">Steakhouse / Upscale</a>
+  </nav>
+</div>
+
+<main>
+
+  <!-- ================= ASIAN ================= -->
+  <section class="section" id="asian">
+    <div class="section-head">
+      <span class="icon">🥢</span>
+      <h2>Asian Cuisine</h2>
+      <span class="count">19 SPOTS</span>
+    </div>
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-top"><span class="fallback">🍣</span><h3>Kiyen's</h3></div>
+        <div class="loc">17200 Chenal Pkwy, Little Rock</div>
+        <p>Fine-dining fusion blending Japanese sushi with contemporary American flair — elk loin, extensive sushi menu.</p>
+        <a class="link" href="https://www.allmenus.com/ar/little-rock/339126-kiyens/menu/" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><span class="fallback">🍜</span><h3>Pho and More</h3></div>
+        <div class="loc">Jacksonville, AR</div>
+        <p>Local favorite for pho, pad Thai, papaya salad, and sushi with friendly service.</p>
+        <a class="link" href="https://www.menupix.com/littlerock/restaurants/28990152/Pho-And-More-Jacksonville-AR" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=pho88ar.com" alt=""><h3>Pho 88</h3></div>
+        <div class="loc">4011 E Kiehl Ave, Sherwood</div>
+        <p>Vietnamese and Chinese cuisine side by side — pho, chow mein, fried rice.</p>
+        <a class="link" href="https://www.pho88ar.com/" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=eat3fold.com" alt=""><h3>Three Fold Noodles + Dumpling Co.</h3></div>
+        <div class="loc">611 S Main St, Little Rock (SoMa) + Pleasant Ridge</div>
+        <p>Handmade dumplings, steamed buns, and noodles drawing on regional Chinese cuisine since 2014.</p>
+        <a class="link" href="https://www.eat3fold.com/menu" target="_blank">View Menu</a>
+      </div>
+
+    </div>
+
+    <div class="subhead">Chinese</div>
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=chengsgardensherwood.com" alt=""><h3>Cheng's Garden</h3></div>
+        <div class="loc">Sherwood, AR</div>
+        <p>Casual, self-serve Chinese spot known for kung pao chicken and General Tso's.</p>
+        <a class="link" href="https://www.chengsgardensherwood.com/" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=chinawoklittlerock.com" alt=""><h3>China Wok</h3></div>
+        <div class="loc">10402 Stagecoach Rd, Little Rock</div>
+        <p>Quick, affordable Chinese takeout with sesame chicken and beef &amp; broccoli standouts.</p>
+        <a class="link" href="https://www.chinawoklittlerock.com/menu" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=newfunreelittlerock.com" alt=""><h3>New Fun Ree</h3></div>
+        <div class="loc">418 W 7th St, Little Rock</div>
+        <p>A Little Rock institution for quick, consistent Chinese takeout with generous lunch specials.</p>
+        <a class="link" href="https://www.newfunreelittlerock.com/f45z0g3n/new-fun-ree-chinese-restaurant-little-rock-72201/menu" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=mrchenschinese.com" alt=""><h3>Mr. Chen's</h3></div>
+        <div class="loc">3901 S University Ave, Little Rock</div>
+        <p>Authentic Chinese cooking, a longtime cornerstone of the local Chinese food scene.</p>
+        <a class="link" href="https://www.mrchenschinese.com/" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><span class="fallback">🥡</span><h3>Fantastic China</h3></div>
+        <div class="loc">1900 N Grant St, Little Rock</div>
+        <p>Contemporary, artfully presented Chinese classics with a great tea selection.</p>
+        <a class="link" href="http://places.singleplatform.com/fantastic-china/menu" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=eatatchis.com" alt=""><h3>Chi's Chinese Cuisine</h3></div>
+        <div class="loc">17200 Chenal Pkwy, Little Rock</div>
+        <p>Serving Arkansas for over 30 years — Kung Pao Triple Delight and pineapple fried rice are fan favorites.</p>
+        <a class="link" href="https://eatatchis.com/" target="_blank">View Menu</a>
+      </div>
+
+    </div>
+
+    <div class="subhead">Indian</div>
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=bheemasindiankitchen.com" alt=""><h3>Bheema's Indian Kitchen &amp; Bar</h3></div>
+        <div class="loc">110 S Shackleford Rd, Little Rock</div>
+        <p>Authentic North and South Indian cuisine, known for biryanis, dosas, and weekend Dosa Nights.</p>
+        <a class="link" href="https://bheemasindiankitchen.com/" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><span class="fallback">🍛</span><h3>Spice 94 Indian Restaurant</h3></div>
+        <div class="loc">Jacksonville, AR</div>
+        <p>The go-to Indian spot north of the river for curries, tandoori, and more.</p>
+        <a class="link" href="https://www.facebook.com/p/Spice-94-Indian-Restaurant-61577410303635/" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=lrstarofindia.com" alt=""><h3>Star of India</h3></div>
+        <div class="loc">301 N Shackleford Rd, Little Rock</div>
+        <p>Authentic North Indian cuisine since 1993, with a beloved lunch buffet and goat korma.</p>
+        <a class="link" href="https://www.lrstarofindia.com/" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=rookhknight.com" alt=""><h3>Rookh Italian + Indian</h3></div>
+        <div class="loc">22000 I-30, Bryant</div>
+        <p>A bold Indian-Italian fusion concept — pizza, pasta, and burgers infused with Indian spices, plus lamb shanks and steaks.</p>
+        <a class="link" href="https://rookhknight.com/page/menu-pdf" target="_blank">View Menu</a>
+      </div>
+
+    </div>
+
+    <div class="subhead">Sushi</div>
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=oceansatarthurs.com" alt=""><h3>Ocean's at Arthur's</h3></div>
+        <div class="loc">16100 Chenal Pkwy, Little Rock</div>
+        <p>Fresh seafood and sushi in an upscale setting, plus a full raw bar.</p>
+        <a class="link" href="https://oceansatarthurs.com/" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=kemurirestaurant.com" alt=""><h3>Kemuri</h3></div>
+        <div class="loc">2601 Kavanaugh Blvd, Little Rock (Hillcrest)</div>
+        <p>Upscale, creative sushi and Asian fusion — robata grill, sushi burritos, and bibimbap. Special-occasion worthy.</p>
+        <a class="link" href="https://kemurirestaurant.com/" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=mizukiar.com" alt=""><h3>Mizuki A.Y.C.E. Sushi &amp; Hibachi</h3></div>
+        <div class="loc">12110 Chenal Pkwy, Little Rock</div>
+        <p>Upscale all-you-can-eat sushi and hibachi, server-guided rather than a buffet line.</p>
+        <a class="link" href="https://www.mizukiar.com/" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=tokyohouselr.com" alt=""><h3>Tokyo House</h3></div>
+        <div class="loc">11 Shackleford Dr, Little Rock</div>
+        <p>A Japanese buffet with 50+ sushi and sashimi options plus hibachi entrees.</p>
+        <a class="link" href="https://tokyohouselr.com/" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=sushicafelittlerock.com" alt=""><h3>Sushi Cafe</h3></div>
+        <div class="loc">Kavanaugh Blvd + Cantrell Rd (West)</div>
+        <p>Premium sushi with a modern, pan-global twist — hibachi and even a Kobe beef burger.</p>
+        <a class="link" href="https://sushicafelittlerock.com/" target="_blank">View Menu</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= BREAKFAST ================= -->
+  <section class="section" id="breakfast">
+    <div class="section-head">
+      <span class="icon">🥞</span>
+      <h2>Breakfast</h2>
+      <span class="count">8 SPOTS</span>
+    </div>
+    <p class="section-note">The Root Cafe, The Spot SoMa, and The Croissanterie also show up under their other categories — they're good enough to earn a spot in both lists.</p>
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=hillcrestlittlebakery.com" alt=""><h3>Hillcrest Little Bakery</h3></div>
+        <div class="loc">203 N Van Buren St, Little Rock (Hillcrest)</div>
+        <p>A cozy neighborhood bakery serving huge biscuits, biscuits and gravy, and homemade pastries. Feels like grandma's kitchen.</p>
+        <a class="link" href="https://www.hillcrestlittlebakery.com/menu" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=therootcafe.com" alt=""><h3>The Root Cafe</h3></div>
+        <div class="loc">1500 S Main St (SoMa) + West Little Rock</div>
+        <p>Farm-to-table breakfast and brunch — Root Benny, buttermilk pancakes, and biscuits with sausage gravy.</p>
+        <a class="link" href="https://www.therootcafe.com/menu" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=thespotlittlerock.com" alt=""><h3>The Spot SoMa</h3></div>
+        <div class="loc">1424 Main St, Little Rock (SoMa)</div>
+        <p>A cozy breakfast/brunch spot known for chicken and waffles, gumbo, and mimosas.</p>
+        <a class="link" href="https://www.thespotlittlerock.com/menu" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=bigbadbreakfast.com" alt=""><h3>Big Bad Breakfast</h3></div>
+        <div class="loc">306 Main St (Downtown) + 101 S Bowman Rd, Little Rock</div>
+        <p>Made-from-scratch diner with a full bar — house-cured bacon, biscuits, chicken and waffles, and Bloody Marys.</p>
+        <a class="link" href="https://bigbadbreakfast.com/locations-old-2/little-rock/" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=wafflehouse.com" alt=""><h3>Waffle House</h3></div>
+        <div class="loc">1220 Rebsamen Park Rd, Little Rock, AR 72202</div>
+        <p>A confirmed-good location of the classic 24-hour waffle-and-hash-browns staple. Reliable, no-frills, always open.</p>
+        <a class="link" href="https://www.wafflehouse.com/" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=thecroissanterielr.com" alt=""><h3>The Croissanterie</h3></div>
+        <div class="loc">14502 Cantrell Rd, Little Rock</div>
+        <p>French-technique bakery-cafe with a Southern twist — scratch-made croissants, croque monsieur, and biscuits and gravy.</p>
+        <a class="link" href="https://www.thecroissanterielr.com/menu" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><span class="fallback">🍳</span><h3>Frontier Diner</h3></div>
+        <div class="loc">10424 I-30, Little Rock</div>
+        <p>Family-owned Southern diner with a big all-day breakfast menu — chicken fried steak, biscuits and gravy, and famous hash browns.</p>
+        <a class="link" href="https://www.allmenus.com/ar/little-rock/253951-frontier-diner/menu/" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=thebutteredbiscuit.com" alt=""><h3>The Buttered Biscuit</h3></div>
+        <div class="loc">The Heights + Promenade at Chenal, Little Rock</div>
+        <p>Scratch-made Southern biscuits, sausage gravy, Kickin' Chicken waffles, and handcrafted butters in a family-friendly setting.</p>
+        <a class="link" href="https://thebutteredbiscuit.com/menu/" target="_blank">View Menu</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= BREWERIES ================= -->
+  <section class="section" id="breweries">
+    <div class="section-head">
+      <span class="icon">🍺</span>
+      <h2>Breweries</h2>
+      <span class="count">4 SPOTS</span>
+    </div>
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=flywaybrewing.com" alt=""><h3>Flyway Brewing</h3></div>
+        <div class="loc">314 Maple St, North Little Rock (Argenta)</div>
+        <p>A ten-barrel microbrewery on the Arkansas River, known for eclectic pub food and featured on Diners, Drive-Ins and Dives.</p>
+        <a class="link" href="https://www.flywaybrewing.com/menu" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=lost40brewing.com" alt=""><h3>Lost Forty Brewing</h3></div>
+        <div class="loc">501 Byrd St, Little Rock</div>
+        <p>Iconic Little Rock brewery pairing award-winning beer with Southern soul food. Dog-friendly and a must-visit.</p>
+        <a class="link" href="https://order.toasttab.com/online/lost40brewing" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=southerntailbrewing.com" alt=""><h3>Southern Tail Brewing</h3></div>
+        <div class="loc">900 E 9th St, Little Rock (Hanger Hill)</div>
+        <p>A cozy, dog-friendly brewery serving upscale Southern pub fare — shrimp and grits, pimento cheese burgers, and beignets.</p>
+        <a class="link" href="https://www.southerntailbrewing.com/food_menu" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=moodybrews.co" alt=""><h3>Moody Brews</h3></div>
+        <div class="loc">414 E 21st St, Little Rock (Pettaway)</div>
+        <p>A small-batch neighborhood brewery with a laid-back taproom and rotating in-house brews.</p>
+        <a class="link" href="https://moodybrews.co/food-menu" target="_blank">View Menu</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= BURGERS ================= -->
+  <section class="section" id="burgers">
+    <div class="section-head">
+      <span class="icon">🍔</span>
+      <h2>Burgers</h2>
+      <span class="count">7 SPOTS</span>
+    </div>
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=davidsburgers.com" alt=""><h3>David's Burgers</h3></div>
+        <div class="loc">Multiple Little Rock-area locations</div>
+        <p>An Arkansas favorite since 2010 — fresh hand-formed patties, hand-cut fries, and free ice cream after your meal.</p>
+        <a class="link" href="https://www.davidsburgers.com/menu" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><span class="fallback">🍔</span><h3>Smashed N' Stacked</h3></div>
+        <div class="loc">408 E 21st St, Little Rock (Pettaway Square)</div>
+        <p>A local smash burger food truck with a cult following — bacon-bit-crusted patties and signature truck-made sauce.</p>
+        <a class="link" href="https://order.toasttab.com/online/smashednstacked" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=bigorangeburger.com" alt=""><h3>Big Orange</h3></div>
+        <div class="loc">207 N University Ave, Little Rock (Midtown)</div>
+        <p>Locally owned, chef-driven burgers known statewide, with a well-regarded cocktail and shake program.</p>
+        <a class="link" href="https://www.bigorangeburger.com/little-rock-midtown" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=waybackburgers.com" alt=""><h3>Wayback Burgers</h3></div>
+        <div class="loc">16900 Chenal Pkwy, Little Rock</div>
+        <p>Fast-casual chain serving made-to-order, never-frozen patties and hand-dipped milkshakes.</p>
+        <a class="link" href="https://waybackburgers.com/locations/us/arkansas/little-rock/" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=blackanguscafe.com" alt=""><h3>Black Angus Cafe</h3></div>
+        <div class="loc">5100 W Markham St, Little Rock</div>
+        <p>A Little Rock institution since 1960. Charcoal-grilled burgers, hand-cut steaks, no-frills self-serve charm.</p>
+        <a class="link" href="https://www.blackanguscafe.com/menu/" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><span class="fallback">🍔</span><h3>The Box</h3></div>
+        <div class="loc">1023 W 7th St, Little Rock</div>
+        <p>A legendary, bare-bones burger joint dating to 1948. Griddle-cooked classics and chili cheese dogs, lunch only.</p>
+        <a class="link" href="https://www.allmenus.com/ar/little-rock/759400-the-box/menu/" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><span class="fallback">🍔</span><h3>Buffalo Grill</h3></div>
+        <div class="loc">1611 Rebsamen Park Rd, Little Rock</div>
+        <p>A Little Rock classic since 1981 — well-seasoned burgers, chili cheese dip, and cold beer.</p>
+        <a class="link" href="https://buffalo-grill.restaurantmenu.us.com/" target="_blank">View Menu</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= ITALIAN ================= -->
+  <section class="section" id="italian">
+    <div class="section-head">
+      <span class="icon">🍝</span>
+      <h2>Italian</h2>
+      <span class="count">4 SPOTS</span>
+    </div>
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=brunoslittleitaly.com" alt=""><h3>Bruno's Little Italy</h3></div>
+        <div class="loc">310 Main St, Little Rock</div>
+        <p>Arkansas' original Italian restaurant, family-run since 1949. A true institution.</p>
+        <a class="link" href="https://www.brunoslittleitaly.com/menu/" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=capeo.us" alt=""><h3>Ristorante Capeo</h3></div>
+        <div class="loc">425 Main St, North Little Rock (Argenta)</div>
+        <p>Fine Italian dining since 2003, often called the best Italian food in Central Arkansas.</p>
+        <a class="link" href="https://www.opentable.com/r/capeo-n-little-rock" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=milanositaliangrilllittlerock.com" alt=""><h3>Milano's Italian Grill</h3></div>
+        <div class="loc">6100 Stones Rd, Little Rock</div>
+        <p>Family-owned since 2009, known for huge pasta portions and lobster ravioli.</p>
+        <a class="link" href="https://www.milanositaliangrilllittlerock.com/menu" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><span class="fallback">🍝</span><h3>Rivera Italian Restaurant</h3></div>
+        <div class="loc">2629 Lakewood Village Pl, North Little Rock</div>
+        <p>Old-school Italian often called the best in Central Arkansas, with generous portions and reasonable prices.</p>
+        <a class="link" href="https://www.doordash.com/store/rivera-italian-restaurant-north-little-rock-33940833/" target="_blank">View Menu</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= MEDITERRANEAN ================= -->
+  <section class="section" id="mediterranean">
+    <div class="section-head">
+      <span class="icon">🥙</span>
+      <h2>Mediterranean</h2>
+      <span class="count">6 SPOTS</span>
+    </div>
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=leosgreekcastle.com" alt=""><h3>Leo's Greek Castle</h3></div>
+        <div class="loc">2925 Kavanaugh Blvd, Little Rock (Hillcrest)</div>
+        <p>A 40+ year Little Rock staple blending Greek and American diner fare. Famous gyros and burgers.</p>
+        <a class="link" href="https://www.leosgreekcastle.com/copy-of-home" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><span class="fallback">🥙</span><h3>Mama's Gyros Grill</h3></div>
+        <div class="loc">3309 E Kiehl Ave, Sherwood</div>
+        <p>Authentic Mediterranean street food with a Southern twist since 1990 — try the Razorback Gyro.</p>
+        <a class="link" href="https://www.thv11.com/article/life/food/eat-it-up/mamas-gyros-mediterranean-food-arkansas/91-da1b8364-d7b8-421d-9b98-291a1ad9c732" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=theterracelittlerock.com" alt=""><h3>The Terrace Mediterranean Kitchen</h3></div>
+        <div class="loc">2200 N Rodney Parham Rd, Little Rock</div>
+        <p>A cozy, upscale Mediterranean spot serving moussaka and fresh fish for over 40 years.</p>
+        <a class="link" href="https://www.theterracelittlerock.com/menu.html" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><span class="fallback">🥙</span><h3>Kebab House</h3></div>
+        <div class="loc">11321 W Markham St, Little Rock</div>
+        <p>Charcoal-grilled kebabs, shawarma, Turkish pizzas, and complimentary Turkish tea.</p>
+        <a class="link" href="https://kebab-house.menu-world.com/menu" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=laylasgyro.com" alt=""><h3>Layla's Gyros &amp; Pizzeria</h3></div>
+        <div class="loc">9501 N Rodney Parham Rd, Little Rock + North Little Rock</div>
+        <p>A beloved local blend of Greek/Mediterranean fare and pizza, plus a small Middle Eastern grocery.</p>
+        <a class="link" href="https://laylasgyro.com/" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=alibabalittlerock.com" alt=""><h3>Ali Baba Mediterranean Restaurant &amp; Market</h3></div>
+        <div class="loc">3400 S University Ave, Little Rock</div>
+        <p>A hidden-gem restaurant tucked inside a Middle Eastern grocery store — stuffed grape leaves, falafel, shawarma.</p>
+        <a class="link" href="https://alibabamediterraneanrestaurantmarket.restaurants-us.com/" target="_blank">View Menu</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= PIZZA ================= -->
+  <section class="section" id="pizza">
+    <div class="section-head">
+      <span class="icon">🍕</span>
+      <h2>Pizza</h2>
+      <span class="count">7 SPOTS</span>
+    </div>
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=vinosbrewpub.com" alt=""><h3>Vino's Pizza Pub &amp; Brewery</h3></div>
+        <div class="loc">923 W 7th St, Little Rock</div>
+        <p>Little Rock's original brewpub since the '80s. NY-style pizza, stuffed calzones, house beer, and a music-venue vibe.</p>
+        <a class="link" href="https://vinosbrewpub.com/menu" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=zazapizzaandsalad.com" alt=""><h3>ZAZA Fine Salad &amp; Wood-Oven Pizza</h3></div>
+        <div class="loc">5600 Kavanaugh Blvd, Little Rock (Heights)</div>
+        <p>Neapolitan wood-fired pizzas, build-your-own salads, and housemade gelato. Locally owned since 2008.</p>
+        <a class="link" href="https://www.zazapizzaandsalad.com/little-rock" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=blazepizza.com" alt=""><h3>Blaze Pizza</h3></div>
+        <div class="loc">11525 Cantrell Rd, Little Rock (Pleasant Ridge)</div>
+        <p>Fast-casual build-your-own pizza, ready in about 180 seconds. Gluten-free and vegan options available.</p>
+        <a class="link" href="https://www.blazepizza.com/location/blaze-pizza-little-rock/menu" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><span class="fallback">🍕</span><h3>The Pizza Pub</h3></div>
+        <div class="loc">4000 JFK Blvd, North Little Rock (Park Hill)</div>
+        <p>Chicago-style tavern pizza cut into squares, wings, and grinders, plus a full bar and dart room.</p>
+        <a class="link" href="https://www.doordash.com/store/41932837" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=pizzacafelr.com" alt=""><h3>The Pizza Cafe</h3></div>
+        <div class="loc">Rebsamen Park Rd &amp; West Little Rock</div>
+        <p>A longtime family favorite for pizza, salads, and sandwiches — with a fun take-n-bake option.</p>
+        <a class="link" href="https://www.pizzacafelr.com/menu" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=heightspizzeria.com" alt=""><h3>The Pizzeria</h3></div>
+        <div class="loc">4910 Kavanaugh Blvd, Little Rock (Heights)</div>
+        <p>A gastropub in a converted historic grocery store — Neapolitan pizzas from a Mario Acunto wood oven plus craft cocktails.</p>
+        <a class="link" href="https://www.heightspizzeria.com/menu" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=uspizzaco.net" alt=""><h3>U.S. Pizza Co.</h3></div>
+        <div class="loc">Multiple Central Arkansas locations</div>
+        <p>An Arkansas-born chain famous for its Salad Supreme, white cheese dip, and stone-hearth pizzas.</p>
+        <a class="link" href="https://uspizzaco.net/main-menu" target="_blank">View Menu</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= SOUTH AMERICAN ================= -->
+  <section class="section" id="southamerican">
+    <div class="section-head">
+      <span class="icon">🌎</span>
+      <h2>South American</h2>
+      <span class="count">10 SPOTS</span>
+    </div>
+    <p class="section-note">Latin American, Mexican, and Tex-Mex flavors from around Central Arkansas.</p>
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=cafebossanova.com" alt=""><h3>Cafe Bossa Nova</h3></div>
+        <div class="loc">2701 Kavanaugh Blvd, Little Rock (Hillcrest)</div>
+        <p>Little Rock's beloved Brazilian spot since 2002. Cheese bread, picanha, and moqueca fish stew.</p>
+        <a class="link" href="https://cafebossanova.com/menu" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=buenosairesgrillcafe.com" alt=""><h3>Buenos Aires Grill &amp; Cafe</h3></div>
+        <div class="loc">614 President Clinton Ave, Little Rock</div>
+        <p>Authentic, family-owned Argentinian restaurant known for expertly grilled meats, empanadas, and chimichurri.</p>
+        <a class="link" href="https://buenosairesgrillcafe.com/menu" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=locallimetaco.com" alt=""><h3>Local Lime</h3></div>
+        <div class="loc">17809 Chenal Pkwy, Little Rock</div>
+        <p>Locally owned Fresh-Mex spot blending street food with Latin flavors, plus handcrafted cocktails.</p>
+        <a class="link" href="https://www.locallimetaco.com/menu" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=tacoandtamale.com" alt=""><h3>Heights Taco &amp; Tamale Co.</h3></div>
+        <div class="loc">5805 Kavanaugh Blvd, Little Rock (Heights)</div>
+        <p>Little Rock's own "Ark-Mex" — cheese-smothered Tex-Mex and Delta flavors since 2015.</p>
+        <a class="link" href="https://www.tacoandtamale.com/little-rock" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=tacos4life.com" alt=""><h3>Tacos 4 Life</h3></div>
+        <div class="loc">Multiple Little Rock-area locations</div>
+        <p>Fast-casual tacos where every purchase donates a meal to a child in need.</p>
+        <a class="link" href="https://order.tacos4life.com/menu/little-rock" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=bluecoastburrito.com" alt=""><h3>Blue Coast Burrito</h3></div>
+        <div class="loc">4613 E McCain Blvd, North Little Rock</div>
+        <p>Locally owned West Coast-inspired Mexican — build-your-own burritos, fish tacos, and fresh salads.</p>
+        <a class="link" href="https://bluecoastburrito.com/locations/north-little-rock/menu/" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=tacosgodoylr.com" alt=""><h3>Tacos Godoy</h3></div>
+        <div class="loc">14710 Cantrell Rd, Little Rock</div>
+        <p>Family-owned food truck serving traditional Mexican guisados on handmade corn tortillas — try the quesabirrias.</p>
+        <a class="link" href="https://tacosgodoylr.com/menu" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=catrinascantina.net" alt=""><h3>Catrina's Cantina</h3></div>
+        <div class="loc">North Little Rock</div>
+        <p>Taqueria-style cantina serving carnitas tacos, birria, ceviche, and classic Mexican soups.</p>
+        <a class="link" href="https://www.catrinascantina.net/menu" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=cantinascincodemayo.com" alt=""><h3>Cantina Cinco de Mayo</h3></div>
+        <div class="loc">Multiple locations (Rahling Cir, Stagecoach Rd, Downtown)</div>
+        <p>Longtime Little Rock favorite for cheese dip, authentic tacos, and seafood dishes.</p>
+        <a class="link" href="https://cantinascincodemayo.com/" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=elsurstreetfoodco.com" alt=""><h3>El Sur Street Food Co.</h3></div>
+        <div class="loc">1214 Main St, Little Rock (SoMa)</div>
+        <p>Honduran and Latin American food that grew from a food truck. Try the baleadas and award-winning margaritas.</p>
+        <a class="link" href="https://elsurstreetfoodco.com/menu/elsurstreetfoodco" target="_blank">View Menu</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= SOUTHERN / AMERICAN ================= -->
+  <section class="section" id="southern">
+    <div class="section-head">
+      <span class="icon">🥘</span>
+      <h2>Southern &amp; American</h2>
+      <span class="count">17 SPOTS</span>
+    </div>
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=smokinbuns.net" alt=""><h3>Smokin' Buns BBQ &amp; Catfish</h3></div>
+        <div class="loc">Jacksonville, AR</div>
+        <p>A #1-ranked local favorite for slow-smoked BBQ and Arkansas farm-raised catfish. Worth the short drive.</p>
+        <a class="link" href="https://order.tbdine.com/pickup/49877/menu" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=skinnyjs.com" alt=""><h3>Skinny J's</h3></div>
+        <div class="loc">314A Main St, North Little Rock (Argenta)</div>
+        <p>Family-owned mini-chain serving hand-cut Angus steaks, burgers, and Cajun-leaning apps, with live music.</p>
+        <a class="link" href="https://www.skinnyjs.com/" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=broodandbarley.com" alt=""><h3>Brood &amp; Barley</h3></div>
+        <div class="loc">411 Main St, North Little Rock (Argenta)</div>
+        <p>Creative gastropub known for the "Big Stupid Burger," boar-and-bison meatloaf, and a great cocktail program.</p>
+        <a class="link" href="https://www.broodandbarley.com/menu" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=therootcafe.com" alt=""><h3>The Root Cafe</h3></div>
+        <div class="loc">1500 S Main St, Little Rock (SoMa)</div>
+        <p>Award-winning farm-to-table cafe sourcing nearly everything locally. Great burgers, brats, and biscuits and gravy.</p>
+        <a class="link" href="https://www.therootcafe.com/menu" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=wholehogcafe.com" alt=""><h3>Whole Hog Cafe</h3></div>
+        <div class="loc">Multiple Little Rock-area locations</div>
+        <p>Arkansas' own World Champion BBQ (2002 Memphis in May), veteran-founded since 2000.</p>
+        <a class="link" href="https://www.wholehogcafe.com/locations-menus/" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><span class="fallback">🥘</span><h3>Gadwall's Grill</h3></div>
+        <div class="loc">7311 N Hills Blvd, North Little Rock</div>
+        <p>A North Little Rock staple since 1989 — hearty American diner classics in a friendly hangout atmosphere.</p>
+        <a class="link" href="https://www.yelp.com/menu/gadwalls-grill-north-little-rock/lunch-dinner-menu" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=waldoschicken.com" alt=""><h3>Waldo's Chicken and Beer</h3></div>
+        <div class="loc">Multiple locations (Little Rock &amp; North Little Rock)</div>
+        <p>Made-from-scratch Southern fried chicken and local beer. <strong>Taco Tuesday:</strong> $5 margaritas all day, half-off draft.</p>
+        <a class="link" href="https://waldoschicken.com/menu" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=thecitysilo.com" alt=""><h3>City Silo Table + Pantry</h3></div>
+        <div class="loc">17701 Chenal Pkwy, Little Rock</div>
+        <p>Health-forward comfort food — bowls, salads, plant-based burgers, and smoothies for every diet.</p>
+        <a class="link" href="https://www.thecitysilo.com/littlerock" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=lroysterbar.com" alt=""><h3>The Oyster Bar</h3></div>
+        <div class="loc">3003 W Markham St, Little Rock (Stifft Station)</div>
+        <p>A Little Rock landmark since 1975 — Cajun and seafood favorites in a jukebox-and-cold-beer setting.</p>
+        <a class="link" href="https://lroysterbar.com/menu/" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=blackberry.cafe" alt=""><h3>Blackberry Market</h3></div>
+        <div class="loc">315 N Main St, North Little Rock (Argenta)</div>
+        <p>A bright, fast-casual cafe and bakery with scratch-made food and strong dietary accommodations.</p>
+        <a class="link" href="https://argenta.blackberry.cafe/north-little-rock-blackberry-market-argenta-food-menu" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><span class="fallback">🥘</span><h3>Creekside at Palarm Station</h3></div>
+        <div class="loc">6 Station Ln, Maumelle</div>
+        <p>Homestyle restaurant in a renovated historic house near Palarm Creek — ribeye, walleye, and homemade desserts.</p>
+        <a class="link" href="https://www.facebook.com/p/Creekside-at-Palarm-Station-61582823379749/" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=thespotlittlerock.com" alt=""><h3>The Spot SoMa</h3></div>
+        <div class="loc">1424 Main St, Little Rock (SoMa)</div>
+        <p>A cozy breakfast/brunch spot known for chicken and waffles, gumbo, and mimosas.</p>
+        <a class="link" href="https://www.thespotlittlerock.com/menu" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=loblollycreamery.com" alt=""><h3>Loblolly Creamery</h3></div>
+        <div class="loc">Multiple locations (SoMa/Downtown, Hillcrest)</div>
+        <p>Handcrafted, small-batch ice cream made from scratch in Arkansas, with vegan and gluten-free options.</p>
+        <a class="link" href="https://www.loblollycreamery.com/menu/" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=eatmycatfish.com" alt=""><h3>Eat My Catfish</h3></div>
+        <div class="loc">Multiple Little Rock-area locations</div>
+        <p>A local success story since 2008 — fresh farm-raised catfish, shrimp, and free-range chicken.</p>
+        <a class="link" href="https://eatmycatfish.com/menu/" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=maddiesplacelr.com" alt=""><h3>Maddie's Place</h3></div>
+        <div class="loc">1615 Rebsamen Park Rd, Little Rock</div>
+        <p>Funky, informal neighborhood favorite serving New Orleans-inspired comfort food — gumbo, BBQ shrimp, alligator bites.</p>
+        <a class="link" href="https://maddiesplacelr.com/" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=thefadedrose.com" alt=""><h3>Faded Rose</h3></div>
+        <div class="loc">1619 Rebsamen Park Rd, Little Rock</div>
+        <p>A Little Rock institution since 1982 — authentic New Orleans-style steaks and Creole/Cajun classics.</p>
+        <a class="link" href="http://places.singleplatform.com/faded-rose-restaurant-3/menu" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=thecroissanterielr.com" alt=""><h3>The Croissanterie</h3></div>
+        <div class="loc">14502 Cantrell Rd, Little Rock</div>
+        <p>French-technique bakery-cafe with a Southern twist — scratch-made croissants and a smash burger on a croissant bun.</p>
+        <a class="link" href="https://www.thecroissanterielr.com/menu" target="_blank">View Menu</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= STEAKHOUSE / UPSCALE ================= -->
+  <section class="section" id="upscale">
+    <div class="section-head">
+      <span class="icon">🥩</span>
+      <h2>Steakhouse &amp; Upscale Dining</h2>
+      <span class="count">8 SPOTS</span>
+    </div>
+
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=thebutchershoplr.com" alt=""><h3>The Butcher Shop</h3></div>
+        <div class="loc">10825 Hermitage Rd, Little Rock</div>
+        <p>Casually elegant steakhouse known for hickory-charcoaled steaks, prime rib, and lamb chops.</p>
+        <a class="link" href="https://www.thebutchershoplr.com/menu" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=arthursprime.com" alt=""><h3>Arthur's Prime Steakhouse</h3></div>
+        <div class="loc">16100 Chenal Pkwy, Little Rock</div>
+        <p>Arkansas' premier steakhouse — dry-aged prime, Wagyu, and Kobe beef, extensive wine cellar, live piano.</p>
+        <a class="link" href="https://www.arthursprime.com/" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=samstap.com" alt=""><h3>Samantha's Tap Room &amp; Wood Grill</h3></div>
+        <div class="loc">322 Main St, Little Rock (Downtown)</div>
+        <p>Upscale comfort cooked over wood fire — the only Arkansas restaurant with all beer and wine on tap.</p>
+        <a class="link" href="https://samstap.com/" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=doeseatplacelr.com" alt=""><h3>Doe's Eat Place</h3></div>
+        <div class="loc">1023 W Markham St, Little Rock</div>
+        <p>A Little Rock landmark for 35+ years — steaks by the pound family-style and famous hot tamales.</p>
+        <a class="link" href="https://doeseatplacelr.com/" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=bravenewrestaurant.com" alt=""><h3>Brave New Restaurant</h3></div>
+        <div class="loc">2300 Cottondale Ln, Little Rock</div>
+        <p>Contemporary American fine dining with an Arkansas River view — fresh walleye and an award-winning wine list.</p>
+        <a class="link" href="http://places.singleplatform.com/brave-new-restaurant/menu" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=petitandkeet.com" alt=""><h3>Petit &amp; Keet</h3></div>
+        <div class="loc">1620 Market St, Little Rock</div>
+        <p>Polished-casual American cuisine with French and Asian influences and a nationally ranked wine program.</p>
+        <a class="link" href="https://www.petitandkeet.com/menu" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=coppergrilllr.com" alt=""><h3>Copper Grill</h3></div>
+        <div class="loc">300 E 3rd St, Little Rock (Downtown)</div>
+        <p>A downtown staple for gourmet lunch, dinner, or brunch — oysters, hand-cut Angus steaks, and a lively patio.</p>
+        <a class="link" href="https://coppergrilllr.com/dinner/" target="_blank">View Menu</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top"><img src="https://www.google.com/s2/favicons?sz=64&domain=allsoppandchapple.com" alt=""><h3>Allsopp &amp; Chapple</h3></div>
+        <div class="loc">311 Main St, Little Rock (Downtown)</div>
+        <p>Eclectic New American cuisine in the historic Rose Building — consistently ranked among Little Rock's best.</p>
+        <a class="link" href="https://allsoppandchapple.com/dinner-menu/" target="_blank">View Menu</a>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <strong>EATING IN CENTRAL ARKANSAS</strong><br>
+  Little Rock · North Little Rock · Sherwood · Jacksonville · Maumelle · Benton<br>
+  Menus &amp; hours change — call ahead if it matters.
+</footer>
+
+</body>
+</html>
